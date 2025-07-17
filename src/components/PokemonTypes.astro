@@ -1,0 +1,25 @@
+---
+import type { Types } from "../types";
+import { pokemonTypeColor } from "../utils";
+
+interface Props {
+  types: Types[];
+}
+
+const { types }: Props = Astro.props;
+---
+
+<div class="flex mt-3">
+  {
+    types.map((type) => (
+      <div
+        class={`mr-2 rounded-3xl px-2 py-0.5 text-white`}
+        style={`background-color: ${pokemonTypeColor[type.type.name]};`}
+      >
+        <span class="text-shadow-2xs text-shadow-gray-400">
+          {type.type.name}
+        </span>
+      </div>
+    ))
+  }
+</div>

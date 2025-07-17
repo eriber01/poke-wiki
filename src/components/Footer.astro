@@ -1,0 +1,36 @@
+---
+import FooterSocials from "./FooterSocials.astro";
+import FooterLine from "./FooterLine.astro";
+---
+
+<section id="contact" class="bg-blue-950 text-white px-4 py-5">
+  <footer class="flex flex-col items-center md:flex-row w-full">
+    <div
+      class="flex flex-col items-center md:text-start w-full md:w-2/12 tracking-wider"
+    >
+      <div class="mb-2 md:mb-3">
+        <span class="text-2xl">Eriber</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="text-lg">Tejeda Amparo</span>
+        <span>Web Developer</span>
+      </div>
+    </div>
+    <FooterLine />
+    <div class="flex flex-col items-center w-8/12 md:text-star md:ml-2">
+      <span class="text-2xl">About</span>
+      <span class="text-center">
+        This is a single project to learn Astro.
+      </span>
+    </div>
+    <FooterLine />
+    <div class="flex flex-col items-center w-8/12 md:text-star md:ml-2">
+      <span class="text-2xl">Contact</span>
+      <span class="text-center">eriber01@gmail.com</span>
+    </div>
+    <FooterLine />
+    <div>
+      <FooterSocials />
+    </div>
+  </footer>
+</section>

@@ -1,0 +1,22 @@
+---
+import type { Pokemon } from "../types";
+
+interface Props {
+  pokemon: Pokemon;
+}
+
+const { pokemon }: Props = Astro.props;
+---
+
+<a
+  class="cursor-pointer w-[200px] h-[300px] shadow text-center m-2 rounded bg-white/60 grayscale transition-all hover:scale-105 hover:grayscale-0 hover:rotate-2"
+  href=`/pokemon/${pokemon.name.toLowerCase()}`
+>
+  <div class="mt-2">
+    <span>{`${pokemon.name} #${pokemon.id}`}</span>
+  </div>
+  <img
+    src={pokemon.sprites.other["official-artwork"].front_default}
+    alt={`Image of ${pokemon.name}`}
+  />
+</a>

@@ -1,0 +1,48 @@
+---
+import PokemonCard from "../components/PokemonCard.astro";
+import Spinner from "../components/Spinner.astro";
+import type { Pokemon, PokemonRequest } from "../types";
+
+let pokemons: Pokemon[] = [];
+let loading = true;
+
+const pageParam = Astro.url.searchParams.get("page");
+const page = pageParam ? parseInt(pageParam) : 0;
+
+const limit = 15;
+const offset = page * limit;
+
+try {
+  const { results }: PokemonRequest = await fetch(
+    `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+  ).then((res) => res.json());
+
+  pokemons = await Promise.all(
+    results.map(async (result) => {
+      const pokemon: Pokemon = await fetch(result.url).then((res) =>
+        res.json()
+      );
+      return {
+        ...pokemon,
+        name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
+      };
+    })
+  );
+
+  loading = false;
+} catch (error) {
+  alert("Error searching the Pokemons");
+}
+---
+
+<div class="flex flex-wrap justify-center md:justify-between w-4/5 pokemon-list">
+  {
+    loading || !pokemons.length ? (
+      <div class="flex justify-center items-center">
+        <Spinner />
+      </div>
+    ) : (
+      pokemons.map((pokemon) => <PokemonCard pokemon={pokemon} />)
+    )
+  }
+</div>

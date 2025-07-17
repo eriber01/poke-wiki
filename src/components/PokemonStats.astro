@@ -1,0 +1,28 @@
+---
+import type { Stats } from "../types";
+import { firstUpperCase } from "../utils";
+
+interface Props {
+  stats: Stats[];
+}
+
+const { stats }: Props = Astro.props;
+
+const statsFilter = stats.filter(
+  (i) =>
+    i.stat.name !== "hp" &&
+    i.stat.name !== "special-attack" &&
+    i.stat.name !== "special-defense"
+);
+---
+
+<div class="flex mt-5 justify-between w-10/12">
+  {
+    statsFilter.map((i) => (
+      <div class="flex flex-col text-center">
+        <span class="font-semibold">{i.base_stat}</span>
+        <span>{firstUpperCase(i.stat.name || "")}</span>
+      </div>
+    ))
+  }
+</div>

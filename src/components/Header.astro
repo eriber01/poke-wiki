@@ -1,0 +1,46 @@
+
+<div class="nav-container">
+  <nav class="flex justify-between header">
+    <div>
+      <li class="font-semibold"><a href="/">Poke Wiki</a></li>
+    </div>
+    <div class="opacity-10">|</div>
+    <div class="flex">
+      <li class="ml-2.5">
+        <a href="/">Pokemons</a>
+      </li>
+      <li class="ml-2.5">
+        <a href="#contact">Contact</a>
+      </li>
+    </div>
+  </nav>
+</div>
+
+<style>
+  nav li {
+    border-bottom: 1px solid transparent;
+    color: black;
+		list-style: none;
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 1.5rem;
+  }
+
+  .header {
+    width: 90%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px rgba(128, 128, 128, 0.397);
+    padding: 0.4rem 0.5rem;
+    cursor: pointer;
+  }
+
+  nav li:hover {
+    transition: all 0.3s ease;
+    transform: translateY(-2px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.555);
+  }
+</style>
