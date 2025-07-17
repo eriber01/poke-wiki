@@ -9,16 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.3.0",
     "@astrojs/ts-plugin": "^1.10.4",
+    "@astrojs/vercel": "^8.2.2",
     "@tailwindcss/vite": "^4.1.10",
     "astro": "^5.10.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.10"
-  },
-  "devDependencies": {
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6"
   }
 }
