@@ -1,0 +1,51 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PokemonTypes from "../../components/PokemonTypes.astro";
+import type { Pokemon } from "../../types";
+import PokemonStats from "../../components/PokemonStats.astro";
+import { firstUpperCase } from "../../utils";
+
+const { pokemon } = Astro.params;
+
+const data: Pokemon = await fetch(
+  `https://pokeapi.co/api/v2/pokemon/${pokemon}/`
+).then((res) => res.json());
+
+const statistic = {
+  hp: data.stats.find((i) => (i.stat.name = "hp")),
+};
+---
+
+<Layout title=`Poke Wiki | ${firstUpperCase(pokemon || "")}` `>
+  <div class="flex justify-center">
+    <div
+      class="flex flex-col items-center w-[300px] h-[400px] shadow m-2 rounded bg-white/60"
+    >
+      <div class="text-right w-full mt-5">
+        <span class="mr-3 py-2 px-3 rounded-full bg-blue-800 text-white">
+          <span class="text-sm">HP</span>
+          <span class="">
+            {statistic.hp?.base_stat}
+          </span>
+        </span>
+      </div>
+      <img
+        class=""
+        width="200"
+        height="250"
+        src={data.sprites.other["official-artwork"].front_default}
+        alt={`Image of ${pokemon}`}
+      />
+
+      <span class="font-semibold text-xl">{firstUpperCase(pokemon || "")}</span>
+
+      <div>
+        <PokemonTypes types={data.types} />
+      </div>
+
+      <div class="flex justify-center w-full">
+        <PokemonStats stats={data.stats} />
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,14 @@
+---
+import Pokemons from "../components/Pokemons.astro";
+import Pagination from "../components/Pagination.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Poke Wiki | Home">
+  <section class="flex justify-center">
+    <Pokemons />
+  </section>
+  <section>
+    <Pagination />
+  </section>
+</Layout>
