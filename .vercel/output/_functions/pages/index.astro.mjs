@@ -25,25 +25,19 @@ const $$Pokemons = createComponent(async ($$result, $$props, $$slots) => {
   const page = pageParam ? parseInt(pageParam) : 0;
   const limit = 15;
   const offset = page * limit;
-  try {
-    const { results } = await fetch(
-      `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
-    ).then((res) => res.json());
-    pokemons = await Promise.all(
-      results.map(async (result) => {
-        const pokemon = await fetch(result.url).then(
-          (res) => res.json()
-        );
-        return {
-          ...pokemon,
-          name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
-        };
-      })
-    );
-    loading = false;
-  } catch (error) {
-    alert("Error searching the Pokemons");
-  }
+  const { results } = await fetch(
+    `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+  ).then((res) => res.json());
+  pokemons = await Promise.all(
+    results.map(async (result) => {
+      const pokemon = await fetch(result.url).then((res) => res.json());
+      return {
+        ...pokemon,
+        name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+      };
+    })
+  );
+  loading = false;
   return renderTemplate`${maybeRenderHead()}<div class="flex flex-wrap justify-center md:justify-between w-4/5 pokemon-list"> ${loading || !pokemons.length ? renderTemplate`<div class="flex justify-center items-center"> ${renderComponent($$result, "Spinner", $$Spinner, {})} </div>` : pokemons.map((pokemon) => renderTemplate`${renderComponent($$result, "PokemonCard", $$PokemonCard, { "pokemon": pokemon })}`)} </div>`;
 }, "C:/Users/eribe/OneDrive/Escritorio/Web Dev/Astro/poke-wiki/src/components/Pokemons.astro", void 0);
 
